@@ -105,7 +105,7 @@ describe('Board 요구사항 테스트', () => {
         noticeBoard.publish(article);
 
         // 규칙은 ${board.name}-${랜덤 값} 를 따른다.
-        expect(article.id.startsWith('공지사항-')).toBe(true);
+        expect(article.id. startsWith('공지사항-')).toBe(true);
     });
 
     test('Board에 Article을 추가할 때 Article에 작성 일자가 들어가야 한다.', () => {
