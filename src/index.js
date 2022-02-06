@@ -9,6 +9,7 @@ class Site {
             }
         }
         board.isInsite = true;
+        board.isInsites = true;
         this.boards.push(board);
     }
 
@@ -36,6 +37,7 @@ class Board {
         if (this.isInsite) {
             article.id = `${this.boarding}-${Math.random()}`;
             article.createdDate = new Date().toISOString();
+            article.isInsites = true;
             this.articles.push(article);
         } else throw new Error();
     }
@@ -46,12 +48,38 @@ class Board {
 }
 
 class Article {
-    constructor(art) {
-        this.articled = art;
+    constructor(name) {
+        if (!name.subject || !name.content || !name.author) {
+            throw new Error('유효하지 않은 값');
+        } else {
+            this.boarding = name;
+            this.articles = [];
+            this.isInsites = false;
+        }
+    }
+    reply(comment) {
+        if (this.isInsites) {
+            comment.createdDate = new Date().toISOString();
+            this.articles.push(comment);
+        } else if (this.isInsites === false) {
+            throw new Error();
+        }
+    }
+
+    getAllComments() {
+        return this.articles;
     }
 }
 
-class Comment {}
+class Comment {
+    constructor(name) {
+        if (!name.content || !name.author) {
+            throw new Error('유효하지 않은 값');
+        } else {
+            this.boarding = name;
+        }
+    }
+}
 
 module.exports = {
     Site,
